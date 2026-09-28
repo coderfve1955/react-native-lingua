@@ -1,5 +1,20 @@
 {
   "enabledPlugins": {
     "expo@claude-plugins-official": true
+  },
+  "permissions": {
+    "defaultMode": "default",
+    "disableBypassPermissionsMode": "disable",
+    "ask": [
+      "Edit",
+      "Write",
+      "NotebookEdit",
+      "Bash(rm *)",
+      "Bash(git push*)",
+      "Bash(git reset*)",
+      "Bash(git checkout -- *)",
+      "Bash(git clean*)",
+      "Bash(sudo *)"
+    ]
   }
 }
