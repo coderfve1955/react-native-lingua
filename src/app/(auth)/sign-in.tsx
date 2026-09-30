@@ -1,3 +1,5 @@
+import { useSignIn } from "@clerk/expo";
+import { useSSO } from "@clerk/expo/experimental";
 import { router } from "expo-router";
 import { useState } from "react";
 import {
@@ -20,16 +22,44 @@ import { images } from "@/constants/images";
 import { colors } from "@/theme";
 
 export default function SignIn() {
+  const { signIn, errors, fetchStatus } = useSignIn();
+  const { startSSOFlow } = useSSO();
+
   const [email, setEmail] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
+  const [verifyError, setVerifyError] = useState<string | null>(null);
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
+    const { error } = await signIn.emailCode.sendCode({ emailAddress: email });
+    if (error) return;
+
+    setVerifyError(null);
     setIsVerifying(true);
   };
 
-  const handleVerified = () => {
-    setIsVerifying(false);
-    router.replace("/");
+  const handleVerified = async (code: string) => {
+    const { error } = await signIn.emailCode.verifyCode({ code });
+    if (error) {
+      setVerifyError(error.longMessage ?? error.message);
+      return;
+    }
+
+    if (signIn.status === "complete") {
+      await signIn.finalize();
+      setIsVerifying(false);
+      router.replace("/");
+    }
+  };
+
+  const handleSocialAuth = async (strategy: "oauth_google" | "oauth_facebook" | "oauth_apple") => {
+    try {
+      const { createdSessionId } = await startSSOFlow({ strategy });
+      if (createdSessionId) {
+        router.replace("/");
+      }
+    } catch (err) {
+      console.error(JSON.stringify(err, null, 2));
+    }
   };
 
   return (
@@ -80,10 +110,17 @@ export default function SignIn() {
               placeholder="alex@gmail.com"
               keyboardType="email-address"
             />
+            {errors.fields.identifier && (
+              <Text className="text__body--sm text-error">{errors.fields.identifier.message}</Text>
+            )}
           </View>
 
           <View className="pt-6">
-            <GradientButton label="Sign In" onPress={handleSignIn} />
+            <GradientButton
+              label="Sign In"
+              onPress={handleSignIn}
+              disabled={fetchStatus === "fetching"}
+            />
           </View>
 
           <View className="flex-row items-center gap-3 py-6">
@@ -93,9 +130,21 @@ export default function SignIn() {
           </View>
 
           <View className="gap-3">
-            <SocialAuthButton icon={<GoogleIcon />} label="Continue with Google" />
-            <SocialAuthButton icon={<FacebookIcon />} label="Continue with Facebook" />
-            <SocialAuthButton icon={<AppleIcon />} label="Continue with Apple" />
+            <SocialAuthButton
+              icon={<GoogleIcon />}
+              label="Continue with Google"
+              onPress={() => handleSocialAuth("oauth_google")}
+            />
+            <SocialAuthButton
+              icon={<FacebookIcon />}
+              label="Continue with Facebook"
+              onPress={() => handleSocialAuth("oauth_facebook")}
+            />
+            <SocialAuthButton
+              icon={<AppleIcon />}
+              label="Continue with Apple"
+              onPress={() => handleSocialAuth("oauth_apple")}
+            />
           </View>
 
           <View className="flex-1 flex-row items-end justify-center gap-1 pb-6 pt-8">
@@ -110,6 +159,7 @@ export default function SignIn() {
       <VerificationModal
         visible={isVerifying}
         email={email || "your email"}
+        error={verifyError}
         onClose={() => setIsVerifying(false)}
         onVerified={handleVerified}
       />

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   KeyboardAvoidingView,
   Modal,
@@ -15,14 +15,35 @@ const CODE_LENGTH = 6;
 type VerificationModalProps = {
   visible: boolean;
   email: string;
+  error?: string | null;
   onClose: () => void;
   onVerified: (code: string) => void;
 };
 
-export function VerificationModal({ visible, email, onClose, onVerified }: VerificationModalProps) {
+export function VerificationModal({
+  visible,
+  email,
+  error,
+  onClose,
+  onVerified,
+}: VerificationModalProps) {
   const [code, setCode] = useState("");
+  const [lastError, setLastError] = useState(error);
   const inputRef = useRef<TextInput>(null);
   const insets = useSafeAreaInsets();
+
+  if (error !== lastError) {
+    setLastError(error);
+    if (error) {
+      setCode("");
+    }
+  }
+
+  useEffect(() => {
+    if (error) {
+      inputRef.current?.focus();
+    }
+  }, [error]);
 
   const handleShow = () => {
     setCode("");
@@ -78,6 +99,10 @@ export function VerificationModal({ visible, email, onClose, onVerified }: Verif
               </View>
             ))}
           </Pressable>
+
+          {error && (
+            <Text className="text__body--sm pt-4 text-center text-error">{error}</Text>
+          )}
 
           <TextInput
             ref={inputRef}

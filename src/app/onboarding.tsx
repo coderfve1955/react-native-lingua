@@ -42,7 +42,7 @@ export default function Onboarding() {
 
             <Image
               source={images.mascotWelcome}
-              className="h-[85%] w-full"
+              className="w-full flex-1"
               resizeMode="contain"
             />
           </View>
