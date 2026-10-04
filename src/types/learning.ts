@@ -1,4 +1,4 @@
-export type LanguageCode = "es" | "fr" | "it";
+export type LanguageCode = "es" | "fr" | "it" | "be";
 
 export type LessonType = "video" | "audio" | "chat" | "vocabulary" | "practice";
 
@@ -8,9 +8,10 @@ export type Language = {
   code: LanguageCode;
   name: string; // English name, e.g. "Spanish"
   nativeName: string; // e.g. "Español"
-  flag: string; // emoji flag
+  flag: string; // flag image URL
   // BCP-47 locale, useful later for speech / TTS, e.g. "es-ES"
   locale: string;
+  learners: string; // display text, e.g. "28.4M"
 };
 
 export type Unit = {

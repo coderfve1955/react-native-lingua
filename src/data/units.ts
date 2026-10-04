@@ -36,6 +36,15 @@ export const units: Unit[] = [
     description: "Say hello and goodbye in Italian.",
     lessonIds: ["it-greetings-1"],
   },
+  // Belgian (Flemish)
+  {
+    id: "be-greetings",
+    languageCode: "be",
+    order: 1,
+    title: "Greetings",
+    description: "Say hello and goodbye in Belgian Dutch.",
+    lessonIds: ["be-greetings-1"],
+  },
 ];
 
 export function getUnitsByLanguage(code: LanguageCode): Unit[] {

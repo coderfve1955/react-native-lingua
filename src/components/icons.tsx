@@ -110,3 +110,41 @@ export function AppleIcon({ size = 20 }: { size?: number }) {
     </Svg>
   );
 }
+
+export function ChevronRightIcon({ size = 20, color = colors.neutral.textSecondary }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M9 18l6-6-6-6"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function SearchIcon({ size = 20, color = colors.neutral.textSecondary }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Circle cx={11} cy={11} r={7} stroke={color} strokeWidth={2} />
+      <Path d="M20 20l-4-4" stroke={color} strokeWidth={2} strokeLinecap="round" />
+    </Svg>
+  );
+}
+
+export function CheckCircleIcon({ size = 28, color = colors.brand.primary }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Circle cx={12} cy={12} r={12} fill={color} />
+      <Path
+        d="M7 12.5l3.5 3.5L17 9"
+        stroke="#FFFFFF"
+        strokeWidth={2.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}

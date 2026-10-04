@@ -1,5 +1,5 @@
 import { useAuth } from "@clerk/expo";
-import { Redirect } from "expo-router";
+import { Link, Redirect } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
@@ -16,6 +16,9 @@ export default function Index() {
   return (
     <View className="flex-1 items-center justify-center gap-4 bg-white">
       <Text className="text__heading--h1">Lingua</Text>
+      <Link href="/language-selection" className="text__heading--h4 text-primary">
+        Choose a language
+      </Link>
       <TouchableOpacity
         className="rounded-full bg-primary px-6 py-3"
         activeOpacity={0.85}

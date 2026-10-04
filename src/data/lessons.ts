@@ -319,6 +319,63 @@ export const lessons: Lesson[] = [
       closingMessage: "Bravo! Arrivederci, and see you next lesson.",
     },
   },
+
+  // ---------- Belgian (Flemish): Greetings ----------
+  {
+    id: "be-greetings-1",
+    unitId: "be-greetings",
+    languageCode: "be",
+    order: 1,
+    title: "Hello & Goodbye",
+    description: "Learn the most common Belgian Dutch greetings.",
+    type: "audio",
+    difficulty: "beginner",
+    estimatedMinutes: 5,
+    xpReward: 20,
+    goals: [
+      { id: "g1", description: "Greet someone in Belgian Dutch" },
+      { id: "g2", description: "Say goodbye politely" },
+    ],
+    vocabulary: [
+      { id: "be-dag", word: "Dag", translation: "Hello / Bye", pronunciation: "DAHKH" },
+      { id: "be-tot-ziens", word: "Tot ziens", translation: "Goodbye", pronunciation: "tot ZEENS" },
+      { id: "be-dank-u", word: "Dank u", translation: "Thank you", pronunciation: "dahnk EW" },
+    ],
+    phrases: [{ text: "Dag, hoe gaat het?", translation: "Hi, how are you?" }],
+    activities: [
+      {
+        id: "a1",
+        type: "multiple-choice",
+        xp: 5,
+        question: 'What does "Dank u" mean?',
+        options: ["Thank you", "Hello", "Goodbye", "Please"],
+        correctAnswer: "Thank you",
+      },
+      {
+        id: "a2",
+        type: "translation",
+        xp: 5,
+        prompt: "Goodbye",
+        correctAnswer: "Tot ziens",
+      },
+    ],
+    aiTeacher: {
+      teacherName: "Jan",
+      systemPrompt:
+        "You are Jan, a friendly Belgian (Flemish) teacher helping a complete beginner. " +
+        "Speak mostly in English with short Dutch words and phrases. " +
+        "Keep every reply under 2 sentences and wait for the learner to answer.",
+      openingMessage: "Dag! I'm Jan. Today we'll learn how to say hello and goodbye in Belgian Dutch.",
+      lessonFlow: [
+        "Say 'Dag' and ask the learner to repeat it.",
+        "Teach 'Dank u' and ask the learner to use it.",
+        "Teach 'Tot ziens' and finish with a short greeting.",
+      ],
+      correctionStyle:
+        "Be encouraging, say the correct word once, and ask the learner to try again.",
+      closingMessage: "Heel goed! Tot ziens, and see you next lesson.",
+    },
+  },
 ];
 
 export function getLesson(id: string): Lesson | undefined {
