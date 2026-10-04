@@ -19,11 +19,15 @@ import {
 } from "@/components/icons";
 import { images } from "@/constants/images";
 import { languages } from "@/data/languages";
+import { useLanguageStore } from "@/store/languageStore";
 import { colors } from "@/theme";
 import { LanguageCode } from "@/types/learning";
 
 export default function LanguageSelection() {
-  const [selected, setSelected] = useState<LanguageCode>("es");
+  const { selectedLanguage, setSelectedLanguage } = useLanguageStore();
+  const [selected, setSelected] = useState<LanguageCode>(
+    selectedLanguage ?? "es",
+  );
   const [query, setQuery] = useState("");
 
   const visibleLanguages = languages.filter((language) =>
@@ -97,7 +101,13 @@ export default function LanguageSelection() {
           </View>
 
           <View className="mt-5">
-            <GradientButton label="Confirm" onPress={() => router.back()} />
+            <GradientButton
+              label="Confirm"
+              onPress={() => {
+                setSelectedLanguage(selected);
+                router.replace("/");
+              }}
+            />
           </View>
         </View>
       </ScrollView>
