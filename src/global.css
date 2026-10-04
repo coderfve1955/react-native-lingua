@@ -113,3 +113,25 @@
     color: var(--color-text-secondary);
   }
 }
+
+/*
+  Language selection cards (block "language-card", modifier "selected").
+*/
+@layer components {
+  .language-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: var(--color-border);
+    background-color: var(--color-background);
+    padding: 16px;
+  }
+
+  .language-card--selected {
+    border-width: 1.5px;
+    border-color: var(--color-primary);
+    background-color: #f5f3ff;
+  }
+}
