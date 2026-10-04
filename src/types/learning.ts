@@ -8,6 +8,7 @@ export type Language = {
   code: LanguageCode;
   name: string; // English name, e.g. "Spanish"
   nativeName: string; // e.g. "Español"
+  greeting: string; // shown on Home, e.g. "Hola"
   flag: string; // flag image URL
   // BCP-47 locale, useful later for speech / TTS, e.g. "es-ES"
   locale: string;

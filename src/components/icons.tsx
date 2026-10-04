@@ -220,3 +220,56 @@ export function UserIcon({ size = 24, color = colors.neutral.textPrimary }: Icon
     </Svg>
   );
 }
+
+// Home screen icons
+export function BellIcon({ size = 24, color = colors.neutral.textPrimary }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15L6 16zM10 21h4"
+        stroke={color}
+        strokeWidth={1.8}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function HeadphonesIcon({ size = 24, color = colors.neutral.textPrimary }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M4 16v-4a8 8 0 0 1 16 0v4M4 14h3v6H5.5A1.5 1.5 0 0 1 4 18.5V14zM20 14h-3v6h1.5a1.5 1.5 0 0 0 1.5-1.5V14z"
+        stroke={color}
+        strokeWidth={1.8}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function WordsIcon({ size = 24, color = colors.neutral.textPrimary }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M12 3c-5 0-8 3.2-8 7.5V20l2.7-2 2.6 2 2.7-2 2.6 2 2.7-2 2.7 2v-9.5C20 6.2 17 3 12 3z"
+        fill={color}
+      />
+      <Circle cx={9} cy={11} r={1.5} fill="#EF6B6B" />
+      <Circle cx={15} cy={11} r={1.5} fill="#EF6B6B" />
+    </Svg>
+  );
+}
+
+export function VideoIcon({ size = 24, color = colors.neutral.textPrimary }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M3 8a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8zM15 10.5l5-3v9l-5-3v-3z"
+        fill={color}
+      />
+    </Svg>
+  );
+}
